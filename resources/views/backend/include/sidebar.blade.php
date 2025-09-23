@@ -32,10 +32,10 @@
                             <a class="nav-link" href="/post">posts</a>
                             <a class="nav-link" href="/page">page</a>
                             <a class="nav-link" href="/menu">menu</a>
-                            <a class="nav-link" href="/menu-item">menu item</a>
+                            <a class="nav-link" href="/menuitem">menu item</a>
                             <a class="nav-link" href="/tag">tag</a>
                             <a class="nav-link" href="/category">category</a>
-                            <a class="nav-link" href="/media-asset">media asset</a>
+                            <a class="nav-link" href="/media">media asset</a>
 
                         {{-- <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
                                         Authentication
@@ -74,7 +74,6 @@
         </div>
         <div class="sb-sidenav-footer">
             <div class="small">Logged in as:</div>
-            {{ Auth::user()->name }}
         </div>
     </nav>
 </div>
