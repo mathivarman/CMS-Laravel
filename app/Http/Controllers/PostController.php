@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
 
 class PostController extends Controller
 {
@@ -12,7 +13,8 @@ class PostController extends Controller
     public function index()
     {
         //dd("PostController");
-        return view('backend.post.index');
+        $posts = Post::all();
+        return view('backend.post.index', compact('posts'));
     }
 
     /**
@@ -20,15 +22,32 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.post.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
+
+        public function store(Request $request)
+        {
+            $post = new Post();
+            $post->title = $request->title;
+            $post->slug = $request->slug;
+            $post->excerpt = $request->excerpt;
+            $post->body = $request->body;
+            $post->status = $request->status;
+            $post->published_at = $request->published_at;
+            $post->expires_at = $request->expires_at;
+            $post->is_featured = $request->is_featured;
+            $post->featured_media_id = $request->featured_media_id;
+            $post->meta = $request->meta;
+            $post->auther_id = $request->auther_id;
+            $post->editor_id = $request->editor_id;
+            $post->deleted_at = "2025-09-23 06:09:02";
+            $post->save();
+
+            return redirect()->route('post.index');
     }
 
     /**
@@ -44,7 +63,8 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $post = Post::find($id);
+        return view('backend.post.edit', compact('post'));
     }
 
     /**
@@ -52,7 +72,23 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $post = Post::find($id);
+        $post->title = $request->title;
+        $post->slug = $request->slug;
+        $post->excerpt = $request->excerpt;
+        $post->body = $request->body;
+        $post->status = $request->status;
+        $post->published_at = $request->published_at;
+        $post->expires_at = $request->expires_at;
+        $post->is_featured = $request->is_featured;
+        $post->featured_media_id = $request->featured_media_id;
+        $post->meta = $request->meta;
+        $post->auther_id = $request->auther_id;
+        $post->editor_id = $request->editor_id;
+        $post->deleted_at = "2025-09-23 06:09:02";
+        $post->save();
+
+        return redirect()->route('post.index');
     }
 
     /**
@@ -60,6 +96,8 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $post = Post::find($id);
+        $post->delete();
+        return redirect()->route('post.index');
     }
 }

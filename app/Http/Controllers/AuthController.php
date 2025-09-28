@@ -45,9 +45,11 @@ class AuthController extends Controller
         $user->email = $request->email;
         $user->name = $request->name;
         $user->password =$request->password;
+        $user->display_name = $request->name;
+        $user->avatar_url = 'mathi.com';
+        $user->prefereces = 'just';
         $user->save();
         return redirect()->route('login');
-
 
     }
     public function dashboard()
